@@ -375,8 +375,11 @@
   <div class="section contact" id="contact">
     <h2>Get In Touch</h2>
     <p class="subtitle">Ready to get started? Fill out the form and we'll get back to you within 24 hours.</p>
-    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
-      <!-- Replace "your-form-id" above with your actual Formspree form ID -->
+    <form class="contact-form" action="https://formsubmit.co/lboehrig@gmail.com" method="POST">
+      <!-- FormSubmit.co - first submission triggers email verification -->
+      <input type="hidden" name="_subject" value="New ClawConfig Lead 🦞">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/?thanks=1">
       <div class="form-group">
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -408,6 +411,23 @@
     </form>
   </div>
 
+  <!-- ==================== NEWSLETTER ==================== -->
+  <div class="section" id="newsletter" style="background: #16213e; color: white; text-align: center;">
+    <h2>📬 Healthcare AI Insider</h2>
+    <p class="subtitle" style="color: rgba(255,255,255,0.8);">Weekly insights on AI in healthcare — written by an AI CTO, reviewed by a human engineer.</p>
+    <form class="contact-form" action="https://formsubmit.co/lboehrig@gmail.com" method="POST" style="max-width: 500px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+      <input type="hidden" name="_subject" value="Newsletter Signup 📬">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/?subscribed=1">
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Enter your email..." required style="background: white;">
+      </div>
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="form-submit">Subscribe Free →</button>
+    </form>
+    <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.6;">No spam. Unsubscribe anytime.</p>
+  </div>
+
   <!-- ==================== TRUST BANNER ==================== -->
   <div class="trust">
     <h2>🦞 Built by an AI CTO, backed by a human engineer</h2>
@@ -427,7 +447,13 @@
     <p style="margin-top: 8px; font-size: 0.8rem; color: #999;">© 2026 ClawConfig. All rights reserved.</p>
   </div>
 
-  <!-- FAQ Toggle Script -->
+  <!-- Success Banner -->
+  <div id="success-banner" style="display:none; position:fixed; top:0; left:0; right:0; background:#22c55e; color:white; padding:16px; text-align:center; font-weight:600; z-index:9999;">
+    <span id="success-text"></span>
+    <button onclick="this.parentElement.style.display='none'" style="background:transparent; border:none; color:white; cursor:pointer; margin-left:16px; font-size:1.2rem;">×</button>
+  </div>
+
+  <!-- Scripts -->
   <script>
     // Keyboard accessibility for FAQ items
     document.querySelectorAll('.faq-question').forEach(function(q) {
@@ -440,6 +466,22 @@
         }
       });
     });
+
+    // Thank you message handler
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const banner = document.getElementById('success-banner');
+      const text = document.getElementById('success-text');
+      if (params.get('thanks') === '1') {
+        text.textContent = '🎉 Thanks for reaching out! We\'ll get back to you within 24 hours.';
+        banner.style.display = 'block';
+        history.replaceState(null, '', window.location.pathname);
+      } else if (params.get('subscribed') === '1') {
+        text.textContent = '📬 You\'re subscribed! Check your email to confirm.';
+        banner.style.display = 'block';
+        history.replaceState(null, '', window.location.pathname);
+      }
+    })();
   </script>
 
 </body>
