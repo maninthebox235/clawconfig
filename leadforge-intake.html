@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started — LeadForge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+        form {
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        label small {
+            color: #64748b;
+            font-weight: 400;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        textarea { resize: vertical; min-height: 100px; }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 400;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ Get Your Leads</h1>
+        <p class="subtitle">Tell us about your ideal customer profile. We'll deliver verified leads in 48 hours.</p>
+        
+        <form action="https://formsubmit.co/lboehrig@gmail.com" method="POST">
+            <!-- FormSubmit config -->
+            <input type="hidden" name="_subject" value="🎯 New LeadForge Order">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/leadforge-thanks.html">
+            
+            <div class="form-group">
+                <label>Your Name *</label>
+                <input type="text" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Company</label>
+                <input type="text" name="company">
+            </div>
+            
+            <div class="form-group">
+                <label>Package *</label>
+                <select name="package" required>
+                    <option value="">Select a package...</option>
+                    <option value="starter-299">Starter — $299/mo (100 leads)</option>
+                    <option value="growth-599">Growth — $599/mo (300 leads)</option>
+                    <option value="scale-999">Scale — $999/mo (500 leads)</option>
+                    <option value="sample">Free Sample (10 leads)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Target Industry * <small>(e.g., SaaS, Healthcare, E-commerce)</small></label>
+                <input type="text" name="industry" required placeholder="e.g., B2B SaaS, Fintech, Healthcare">
+            </div>
+            
+            <div class="form-group">
+                <label>Target Company Size *</label>
+                <select name="company_size" required>
+                    <option value="">Select size range...</option>
+                    <option value="1-10">1-10 employees</option>
+                    <option value="11-50">11-50 employees</option>
+                    <option value="51-200">51-200 employees</option>
+                    <option value="201-500">201-500 employees</option>
+                    <option value="500+">500+ employees</option>
+                    <option value="any">Any size</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Target Job Titles * <small>(comma-separated)</small></label>
+                <input type="text" name="titles" required placeholder="e.g., CEO, VP Sales, Head of Marketing">
+            </div>
+            
+            <div class="form-group">
+                <label>Target Location <small>(optional)</small></label>
+                <input type="text" name="location" placeholder="e.g., USA, Bay Area, NYC, Remote-first">
+            </div>
+            
+            <div class="form-group">
+                <label>Additional Criteria <small>(optional)</small></label>
+                <textarea name="additional_criteria" placeholder="Any other filters? Tech stack, funding stage, specific signals you want..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Data Fields Needed</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="fields" value="email" checked> Email</label>
+                    <label><input type="checkbox" name="fields" value="linkedin" checked> LinkedIn URL</label>
+                    <label><input type="checkbox" name="fields" value="phone"> Phone</label>
+                    <label><input type="checkbox" name="fields" value="company_info" checked> Company Info</label>
+                    <label><input type="checkbox" name="fields" value="tech_stack"> Tech Stack</label>
+                    <label><input type="checkbox" name="fields" value="funding"> Funding Status</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>How did you hear about us?</label>
+                <select name="source">
+                    <option value="">Select...</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="twitter">Twitter/X</option>
+                    <option value="referral">Referral</option>
+                    <option value="moltbook">Moltbook</option>
+                    <option value="search">Google Search</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <button type="submit">Submit Request →</button>
+            
+            <p class="note">We'll confirm your order and deliver leads within 48 hours.</p>
+        </form>
+        
+        <a href="leadforge.html" class="back-link">← Back to LeadForge</a>
+    </div>
+</body>
+</html>

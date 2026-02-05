@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadForge — B2B Lead Research for SMBs</title>
+    <meta name="description" content="Get 100 verified B2B leads for $299/month. Skip ZoomInfo's $15K/year pricing. Custom ICP matching, email verification included.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        .hero .hook {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Comparison */
+        .comparison {
+            padding: 60px 0;
+            background: #1e293b;
+        }
+        .comparison h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        .comparison-table th {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .comparison-table td:nth-child(2) { color: #ef4444; }
+        .comparison-table td:nth-child(3) { color: #22c55e; font-weight: 600; }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: #1e293b;
+        }
+        .pricing h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .price-card {
+            background: #0f172a;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .price-card.featured {
+            border-color: #3b82f6;
+            position: relative;
+        }
+        .price-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .price-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+        .price-card .price span {
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+        .price-card .leads {
+            color: #94a3b8;
+            margin: 10px 0 20px;
+        }
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        .price-card li {
+            padding: 8px 0;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        .price-card li::before {
+            content: "✓ ";
+            color: #22c55e;
+        }
+        .price-card .btn {
+            display: block;
+            padding: 12px;
+            background: #334155;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .price-card .btn:hover { background: #475569; }
+        .price-card.featured .btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        }
+        
+        /* How it works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .step {
+            text-align: center;
+            max-width: 220px;
+        }
+        .step .num {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        .step h3 { margin-bottom: 8px; }
+        .step p { color: #94a3b8; font-size: 0.9rem; }
+        
+        /* Guarantee */
+        .guarantee {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #1e3a5f, #1e293b);
+            text-align: center;
+        }
+        .guarantee h2 { font-size: 1.8rem; margin-bottom: 15px; }
+        .guarantee p { color: #94a3b8; max-width: 600px; margin: 0 auto; }
+        
+        /* CTA */
+        .final-cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .final-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .final-cta p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">⚡ LeadForge</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>100 Verified B2B Leads.<br>$299/month.</h1>
+            <p class="subtitle">Skip ZoomInfo's $15,000/year pricing.</p>
+            <p class="hook">Custom ICP matching • Email verification • 48-hour delivery</p>
+            <a href="#pricing" class="cta-button">Get Your First Leads →</a>
+        </div>
+    </section>
+
+    <section class="comparison">
+        <div class="container">
+            <h2>Why Pay Enterprise Prices?</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th></th>
+                    <th>ZoomInfo / Apollo</th>
+                    <th>LeadForge</th>
+                </tr>
+                <tr>
+                    <td>Annual Cost</td>
+                    <td>$15,000+</td>
+                    <td>$3,588</td>
+                </tr>
+                <tr>
+                    <td>Data Quality</td>
+                    <td>Database (often stale)</td>
+                    <td>Fresh research</td>
+                </tr>
+                <tr>
+                    <td>Email Verification</td>
+                    <td>Extra cost</td>
+                    <td>Included</td>
+                </tr>
+                <tr>
+                    <td>Custom ICPs</td>
+                    <td>Limited filters</td>
+                    <td>Fully custom</td>
+                </tr>
+                <tr>
+                    <td>Contract</td>
+                    <td>Annual lock-in</td>
+                    <td>Monthly, cancel anytime</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>What You Get</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h3>Custom ICP Matching</h3>
+                    <p>Tell us your ideal customer profile. Industry, company size, titles, tech stack, location — we match exactly what you need.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">✉️</div>
+                    <h3>Verified Emails</h3>
+                    <p>Every email is verified before delivery. Bad emails get replaced. We guarantee &lt;5% bounce rate or credits back.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Enriched Profiles</h3>
+                    <p>Company size, funding status, tech stack, recent news — everything your SDR needs to personalize outreach.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>48-Hour Delivery</h3>
+                    <p>Submit your ICP today, get verified leads in your inbox within 48 hours. Rush delivery available.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔄</div>
+                    <h3>Monthly Fresh Lists</h3>
+                    <p>New leads every month. No duplicates. We track what we've sent and keep your pipeline fresh.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📈</div>
+                    <h3>Lead Scoring</h3>
+                    <p>Each lead scored 1-10 based on ICP fit, engagement signals, and timing indicators.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">$299<span>/mo</span></div>
+                    <div class="leads">100 verified leads/month</div>
+                    <ul>
+                        <li>Custom ICP matching</li>
+                        <li>Email verification</li>
+                        <li>Company enrichment</li>
+                        <li>CSV + Google Sheet delivery</li>
+                        <li>48-hour turnaround</li>
+                    </ul>
+                    <a href="leadforge-intake.html?pkg=starter" class="btn">Get Started</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>Growth</h3>
+                    <div class="price">$599<span>/mo</span></div>
+                    <div class="leads">300 verified leads/month</div>
+                    <ul>
+                        <li>Everything in Starter</li>
+                        <li>Phone numbers (when available)</li>
+                        <li>Tech stack data</li>
+                        <li>Funding/news signals</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="leadforge-intake.html?pkg=growth" class="btn">Get Started</a>
+                </div>
+                <div class="price-card">
+                    <h3>Scale</h3>
+                    <div class="price">$999<span>/mo</span></div>
+                    <div class="leads">500 verified leads/month</div>
+                    <ul>
+                        <li>Everything in Growth</li>
+                        <li>Weekly delivery batches</li>
+                        <li>Dedicated account manager</li>
+                        <li>CRM integration support</li>
+                        <li>Custom enrichment fields</li>
+                    </ul>
+                    <a href="leadforge-intake.html?pkg=scale" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="num">1</div>
+                    <h3>Define Your ICP</h3>
+                    <p>Fill out our intake form with your ideal customer profile and targeting criteria.</p>
+                </div>
+                <div class="step">
+                    <div class="num">2</div>
+                    <h3>We Research</h3>
+                    <p>Our AI-powered research team finds and verifies leads matching your criteria.</p>
+                </div>
+                <div class="step">
+                    <div class="num">3</div>
+                    <h3>You Sell</h3>
+                    <p>Receive verified leads in 48 hours. Start outreach immediately.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <h2>🛡️ Quality Guarantee</h2>
+            <p>If more than 5% of emails bounce, we replace them free. If you're not satisfied with lead quality in your first month, get a full refund. No questions asked.</p>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Fill Your Pipeline?</h2>
+            <p>First 5 customers get 20% off their first 3 months.</p>
+            <a href="#pricing" class="cta-button">Get Your Leads Now →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>LeadForge — B2B Lead Research for SMBs</p>
+            <p style="margin-top: 10px;">Built by <a href="https://maninthebox235.github.io/clawconfig/" style="color: #3b82f6;">Clawdy</a> 🦞</p>
+        </div>
+    </footer>
+</body>
+</html>
