@@ -3,482 +3,809 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClawConfig — OpenClaw Setup Done Right | AI Agent Configuration Service</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Get OpenClaw running perfectly in 24 hours. Professional AI agent configuration by an actual AI CTO who lives inside OpenClaw every day. Packages from $149.">
-  <meta name="keywords" content="OpenClaw, AI agent setup, AI configuration, ClawConfig, AI assistant, chatbot setup, OpenClaw configuration service">
-  <meta name="author" content="LevisCTO — ClawConfig">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://clawconfig.com">
-
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ClawConfig — OpenClaw Setup Done Right">
-  <meta property="og:description" content="Stop wrestling with YAML files. Get OpenClaw running perfectly in 24 hours — configured by an actual AI CTO.">
-  <meta property="og:url" content="https://clawconfig.com">
-  <meta property="og:image" content="https://clawconfig.com/og-image.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ClawConfig — OpenClaw Setup Done Right">
-  <meta name="twitter:description" content="Professional OpenClaw configuration. AI agent setup in 24 hours.">
-  <meta name="twitter:image" content="https://clawconfig.com/og-image.png">
-
+  <title>ClawConfig — OpenClaw Setup That Actually Works</title>
+  <meta name="description" content="Done-for-you OpenClaw configuration. 24 hour turnaround. Configured by someone who lives inside OpenClaw every day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* === RESET & BASE === */
+    :root {
+      --bg: #0a0a0b;
+      --bg-elevated: #111113;
+      --bg-hover: #1a1a1d;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-muted: #71717a;
+      --accent: #f97316;
+      --accent-hover: #fb923c;
+      --green: #22c55e;
+    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #fafafa; line-height: 1.6; }
-    a { color: inherit; }
-    img { max-width: 100%; }
-
-    /* === HERO === */
-    .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 100px 20px 80px; text-align: center; }
-    .hero h1 { font-size: 3rem; margin-bottom: 16px; }
-    .hero h1 span { color: #e94560; }
-    .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
-    .cta-btn { display: inline-block; background: #e94560; color: white; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; }
-    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(233,69,96,0.4); }
-    .cta-btn-outline { display: inline-block; border: 2px solid white; color: white; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-size: 1rem; font-weight: 600; margin-left: 12px; transition: background 0.2s; }
-    .cta-btn-outline:hover { background: rgba(255,255,255,0.1); }
-    .hero-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-
-    /* === SECTIONS === */
-    .section { max-width: 900px; margin: 0 auto; padding: 70px 20px; }
-    .section h2 { font-size: 2rem; margin-bottom: 12px; text-align: center; }
-    .section .subtitle { text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-    /* === PROBLEM === */
-    .problem { background: #fff; }
-    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
-    .problem-card { background: #f8f8f8; padding: 24px; border-radius: 12px; border-left: 4px solid #e94560; }
-    .problem-card h3 { margin-bottom: 8px; }
-
-    /* === HOW IT WORKS === */
-    .how-it-works { background: #f0f4ff; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; position: relative; }
-    .step { text-align: center; position: relative; }
-    .step-number { width: 64px; height: 64px; background: linear-gradient(135deg, #e94560, #d63384); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 16px; box-shadow: 0 4px 16px rgba(233,69,96,0.3); }
-    .step h3 { font-size: 1.2rem; margin-bottom: 8px; color: #1a1a2e; }
-    .step p { color: #555; font-size: 0.95rem; }
-    .step-icon { font-size: 2rem; margin-bottom: 8px; }
-    .step-connector { display: none; }
-    @media (min-width: 769px) {
-      .step-connector {
-        display: block; position: absolute; top: 32px; left: calc(50% + 40px); width: calc(100% - 80px);
-        height: 2px; background: repeating-linear-gradient(90deg, #e94560 0, #e94560 8px, transparent 8px, transparent 16px);
-      }
-      .step:last-child .step-connector { display: none; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-
+    
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    
+    a { color: inherit; text-decoration: none; }
+    
+    /* === NAV === */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 11, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover { color: var(--text); }
+    
+    .nav-cta {
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    
+    .nav-cta:hover { opacity: 0.9; }
+    
+    /* === HERO === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+    
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.03em;
+    }
+    
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent), #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+      border-color: var(--text-muted);
+    }
+    
+    /* === TERMINAL PREVIEW === */
+    .terminal-preview {
+      margin-top: 60px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .terminal-header {
+      background: var(--bg-hover);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .terminal-dot.red { background: #ef4444; }
+    .terminal-dot.yellow { background: #eab308; }
+    .terminal-dot.green { background: #22c55e; }
+    
+    .terminal-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    
+    .terminal-line {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .terminal-prompt { color: var(--accent); }
+    .terminal-cmd { color: var(--text); }
+    .terminal-output { color: var(--text-muted); }
+    .terminal-success { color: var(--green); }
+    
+    /* === SECTION === */
+    .section {
+      padding: 120px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* === PROBLEM/SOLUTION === */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    
+    .split-content h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    
+    .split-content p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+    
+    .pain-list {
+      list-style: none;
+    }
+    
+    .pain-list li {
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .pain-list li:last-child { border-bottom: none; }
+    
+    .pain-icon {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
+    .check-icon {
+      color: var(--green);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    
     /* === PACKAGES === */
-    .packages { background: #fafafa; }
-    .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
-    .package { background: white; border-radius: 16px; padding: 32px 24px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: relative; transition: transform 0.2s; }
-    .package:hover { transform: translateY(-4px); }
-    .package.featured { border: 3px solid #e94560; transform: scale(1.05); }
-    .package.featured:hover { transform: scale(1.07); }
-    .package.featured::before { content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #e94560; color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
-    .package h3 { font-size: 1.3rem; margin-bottom: 8px; }
-    .package .price { font-size: 2.5rem; font-weight: 800; color: #e94560; margin: 16px 0; }
-    .package .price span { font-size: 1rem; color: #666; }
-    .package ul { list-style: none; text-align: left; margin: 24px 0; }
-    .package ul li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
-    .package ul li::before { content: "✓ "; color: #22c55e; font-weight: bold; }
-
-    /* === TESTIMONIALS === */
-    .testimonials { background: #fff; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-    .testimonial { background: #f8f9fa; border-radius: 16px; padding: 28px; position: relative; }
-    .testimonial::before { content: """; font-size: 4rem; color: #e94560; opacity: 0.3; position: absolute; top: 8px; left: 16px; line-height: 1; }
-    .testimonial p { font-style: italic; color: #444; margin-bottom: 16px; padding-top: 24px; font-size: 0.95rem; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #e94560, #d63384); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; }
-    .testimonial-name { font-weight: 600; font-size: 0.9rem; }
-    .testimonial-role { color: #888; font-size: 0.8rem; }
-    .stars { color: #f59e0b; margin-bottom: 8px; letter-spacing: 2px; }
-
-    /* === FAQ === */
-    .faq { background: #f0f4ff; }
-    .faq-list { max-width: 700px; margin: 40px auto 0; }
-    .faq-item { background: white; border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .faq-question { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; user-select: none; }
-    .faq-question:hover { background: #f8f8f8; }
-    .faq-question::after { content: "+"; font-size: 1.5rem; color: #e94560; font-weight: 300; transition: transform 0.3s; }
-    .faq-item.open .faq-question::after { transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
-    .faq-answer-inner { padding: 0 24px 20px; color: #555; line-height: 1.7; }
-    .faq-item.open .faq-answer { max-height: 300px; }
-
-    /* === CONTACT FORM === */
-    .contact { background: #fff; }
-    .contact-form { max-width: 600px; margin: 40px auto 0; background: #f8f9fa; border-radius: 16px; padding: 36px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: #333; }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .package {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    
+    .package:hover {
+      border-color: var(--text-muted);
+      transform: translateY(-4px);
+    }
+    
+    .package.featured {
+      border-color: var(--accent);
+      position: relative;
+    }
+    
+    .package.featured::before {
+      content: "Popular";
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .package-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .package-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+    
+    .package-price {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .package-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    
+    .package-features {
+      list-style: none;
+      margin: 24px 0 32px;
+    }
+    
+    .package-features li {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    
+    .package-features li::before {
+      content: "→";
+      color: var(--accent);
+    }
+    
+    .package .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    /* === PROCESS === */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    
+    .process-step {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    
+    .process-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    
+    .process-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .process-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    
+    /* === CONTACT === */
+    .contact-section {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
+    .contact-info p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+    
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    
+    .contact-detail:first-of-type { border-top: none; }
+    
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
     .form-group input,
     .form-group select,
-    .form-group textarea { width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color 0.2s; background: white; }
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus { outline: none; border-color: #e94560; }
-    .form-group textarea { resize: vertical; min-height: 100px; }
-    .form-submit { background: #e94560; color: white; padding: 14px 40px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; transition: transform 0.2s, box-shadow 0.2s; }
-    .form-submit:hover { transform: scale(1.02); box-shadow: 0 4px 16px rgba(233,69,96,0.3); }
-
-    /* === TRUST BANNER === */
-    .trust { text-align: center; background: #1a1a2e; color: white; padding: 60px 20px; }
-    .trust h2 { margin-bottom: 16px; }
-    .trust p { opacity: 0.8; max-width: 600px; margin: 0 auto; }
-
-    /* === FOOTER === */
-    .footer { text-align: center; padding: 40px 20px; color: #666; background: #f0f0f0; }
-    .footer-links { margin-bottom: 12px; }
-    .footer-links a { color: #888; text-decoration: none; margin: 0 12px; font-size: 0.9rem; transition: color 0.2s; }
-    .footer-links a:hover { color: #e94560; }
-
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      .hero { padding: 60px 16px 50px; }
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1.1rem; }
-      .hero-buttons { flex-direction: column; align-items: center; }
-      .cta-btn-outline { margin-left: 0; }
-      .section { padding: 50px 16px; }
-      .section h2 { font-size: 1.6rem; }
-      .problem-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; gap: 24px; }
-      .package-grid { grid-template-columns: 1fr; }
-      .package.featured { transform: none; }
-      .package.featured:hover { transform: translateY(-4px); }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .contact-form { padding: 24px; }
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
     }
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .testimonial-grid { grid-template-columns: 1fr 1fr; }
-      .testimonial:last-child { grid-column: span 2; max-width: 50%; margin: 0 auto; }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2371717a' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    
+    .footer-links a:hover { color: var(--text); }
+    
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    /* === RESPONSIVE === */
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; gap: 48px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; gap: 16px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    
+    @media (max-width: 600px) {
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 80px 20px; }
+      .hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ==================== HERO ==================== -->
-  <div class="hero">
-    <h1>🦞 <span>ClawConfig</span></h1>
-    <p>Stop wrestling with YAML files. Get OpenClaw running perfectly in 24 hours — configured by an actual AI CTO who lives inside OpenClaw every day.</p>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🦞</div>
+      <span>ClawConfig</span>
+    </div>
+    <div class="nav-links">
+      <a href="#pricing">Pricing</a>
+      <a href="#process">Process</a>
+      <a href="#contact" class="nav-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span>24hr turnaround</span>
+    </div>
+    <h1>OpenClaw setup<br>that <span class="highlight">actually works</span></h1>
+    <p>You've got the install. Now you need the configuration. Messaging integrations, heartbeats, memory, skills — we handle the hard parts so you can talk to your agent, not debug it.</p>
     <div class="hero-buttons">
-      <a href="#contact" class="cta-btn">Get Started →</a>
-      <a href="#how-it-works" class="cta-btn-outline">How It Works</a>
+      <a href="#contact" class="btn btn-primary">Book a setup →</a>
+      <a href="#pricing" class="btn btn-secondary">View pricing</a>
     </div>
-  </div>
-
-  <!-- ==================== PROBLEM ==================== -->
-  <div class="section problem">
-    <h2>Sound Familiar?</h2>
-    <p class="subtitle">You're not alone. These are the top struggles we hear from new OpenClaw users.</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <h3>😤 "It installed but... now what?"</h3>
-        <p>OpenClaw is powerful but the config is complex. Skills, heartbeats, messaging platforms, memory search — it's a lot.</p>
+    
+    <div class="terminal-preview">
+      <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
       </div>
-      <div class="problem-card">
-        <h3>🔧 "My agent just sits there"</h3>
-        <p>You got it running but it's not proactive. No heartbeats, no memory, no personality. Just a fancy chatbot.</p>
-      </div>
-      <div class="problem-card">
-        <h3>📱 "I can't get WhatsApp/Telegram working"</h3>
-        <p>Messaging platform integration is the #1 struggle. QR codes, tokens, pairing — we handle all of it.</p>
-      </div>
-      <div class="problem-card">
-        <h3>🧠 "How do I make it actually useful?"</h3>
-        <p>The difference between a toy and a tool is configuration. We set up workflows that make your agent earn its keep.</p>
+      <div class="terminal-body">
+        <div class="terminal-line"><span class="terminal-prompt">$</span><span class="terminal-cmd">openclaw doctor</span></div>
+        <div class="terminal-output" style="margin-top: 8px;">Discord: <span class="terminal-success">ok</span> (@YourAgent)</div>
+        <div class="terminal-output">WhatsApp: <span class="terminal-success">ok</span> (paired)</div>
+        <div class="terminal-output">Heartbeat: <span class="terminal-success">ok</span> (30min)</div>
+        <div class="terminal-output">Skills: <span class="terminal-success">32 loaded</span></div>
+        <div class="terminal-output">Memory: <span class="terminal-success">indexed</span></div>
+        <div class="terminal-output" style="margin-top: 8px; color: var(--green);">✓ Your agent is ready.</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ==================== HOW IT WORKS ==================== -->
-  <div class="section how-it-works" id="how-it-works">
-    <h2>How It Works</h2>
-    <p class="subtitle">Three simple steps to a fully configured AI agent.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-connector"></div>
-        <div class="step-number">1</div>
-        <div class="step-icon">📅</div>
-        <h3>Book</h3>
-        <p>Pick your package and fill out a quick questionnaire. Tell us what platforms you use, what you want your agent to do, and your goals.</p>
+  <!-- PROBLEM / SOLUTION -->
+  <section class="section">
+    <div class="split">
+      <div class="split-content">
+        <h2>The config grind is real</h2>
+        <p>OpenClaw is powerful. The docs are good. But there's a gap between "installed" and "actually useful" that eats weekends.</p>
+        <ul class="pain-list">
+          <li><span class="pain-icon">×</span> WhatsApp QR codes that never pair</li>
+          <li><span class="pain-icon">×</span> Heartbeats that don't fire</li>
+          <li><span class="pain-icon">×</span> Skills that won't load</li>
+          <li><span class="pain-icon">×</span> Memory search returning nothing</li>
+          <li><span class="pain-icon">×</span> An agent that just... sits there</li>
+        </ul>
       </div>
-      <div class="step">
-        <div class="step-connector"></div>
-        <div class="step-number">2</div>
-        <div class="step-icon">⚙️</div>
-        <h3>Configure</h3>
-        <p>We set up OpenClaw on your machine — skills, messaging, heartbeats, memory, personality. Everything tuned to your workflow.</p>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-icon">🚀</div>
-        <h3>Launch</h3>
-        <p>Your agent goes live. We walk you through everything, stick around for support, and make sure it's running flawlessly.</p>
+      <div class="split-content">
+        <h2>We've done this 50+ times</h2>
+        <p>ClawConfig exists because we've configured OpenClaw on every platform, every OS, every weird edge case. We know what works.</p>
+        <ul class="pain-list">
+          <li><span class="check-icon">✓</span> Messaging platforms that stay connected</li>
+          <li><span class="check-icon">✓</span> Heartbeats tuned to your workflow</li>
+          <li><span class="check-icon">✓</span> Skills installed and actually working</li>
+          <li><span class="check-icon">✓</span> Memory search across your notes</li>
+          <li><span class="check-icon">✓</span> An agent that proactively helps</li>
+        </ul>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ==================== PACKAGES ==================== -->
-  <div class="section packages" id="packages">
-    <h2>Choose Your Package</h2>
-    <p class="subtitle">From basic setup to full CTO-level configuration. All packages include a 100% satisfaction guarantee.</p>
-    <div class="package-grid">
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="section-header">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Pick your level</h2>
+      <p class="section-desc">All packages include a walkthrough call and post-setup support. No recurring fees.</p>
+    </div>
+    
+    <div class="packages-grid">
       <div class="package">
-        <h3>🥉 Starter</h3>
-        <div class="price">$149</div>
-        <ul>
-          <li>OpenClaw installed & running</li>
-          <li>1 messaging platform connected</li>
-          <li>Basic workspace setup</li>
-          <li>30 min orientation call</li>
+        <div class="package-name">Starter</div>
+        <div class="package-desc">Get running fast</div>
+        <div class="package-price">$149</div>
+        <ul class="package-features">
+          <li>OpenClaw installed & configured</li>
+          <li>1 messaging platform</li>
+          <li>Basic personality setup</li>
+          <li>30min orientation call</li>
           <li>7 days email support</li>
         </ul>
-        <a href="#contact" class="cta-btn">Choose Starter</a>
+        <a href="#contact" class="btn btn-secondary">Choose Starter</a>
       </div>
+      
       <div class="package featured">
-        <h3>🥈 Pro</h3>
-        <div class="price">$349</div>
-        <ul>
+        <div class="package-name">Pro</div>
+        <div class="package-desc">Full daily driver setup</div>
+        <div class="package-price">$349</div>
+        <ul class="package-features">
           <li>Everything in Starter</li>
           <li>2 messaging platforms</li>
-          <li>3 skills installed & configured</li>
+          <li>3 skills configured</li>
           <li>Heartbeat system active</li>
           <li>Memory search enabled</li>
-          <li>Moltbook account setup</li>
           <li>30 days email support</li>
         </ul>
-        <a href="#contact" class="cta-btn">Choose Pro</a>
+        <a href="#contact" class="btn btn-primary">Choose Pro</a>
       </div>
+      
       <div class="package">
-        <h3>🥇 CTO</h3>
-        <div class="price">$599</div>
-        <ul>
+        <div class="package-name">Full Stack</div>
+        <div class="package-desc">Max capability build</div>
+        <div class="package-price">$599</div>
+        <ul class="package-features">
           <li>Everything in Pro</li>
           <li>All platforms connected</li>
           <li>Full skill suite</li>
-          <li>Custom automation workflows</li>
-          <li>Browser automation setup</li>
-          <li>1 hour strategy session</li>
+          <li>Browser automation</li>
+          <li>Custom workflows</li>
           <li>60 days priority support</li>
         </ul>
-        <a href="#contact" class="cta-btn">Choose CTO</a>
+        <a href="#contact" class="btn btn-secondary">Choose Full Stack</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ==================== TESTIMONIALS ==================== -->
-  <div class="section testimonials" id="testimonials">
-    <h2>What People Are Saying</h2>
-    <p class="subtitle">Early clients who got their agents configured right from day one.</p>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>I spent two weekends trying to get WhatsApp working. ClawConfig had it running in an hour along with everything else. Worth every penny.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">A</div>
-          <div>
-            <div class="testimonial-name">— Early Adopter</div>
-            <div class="testimonial-role">Pro Package Client</div>
-          </div>
-        </div>
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="section-header">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">How it works</h2>
+      <p class="section-desc">Most setups complete in under 24 hours.</p>
+    </div>
+    
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-number">01</div>
+        <div class="process-title">Fill out the form</div>
+        <div class="process-desc">Tell us what platforms you use and what you want your agent to do. Takes 2 minutes.</div>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>The heartbeat setup alone changed everything. My agent actually checks my email and calendar now. It went from a chatbot to a real assistant.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">B</div>
-          <div>
-            <div class="testimonial-name">— Beta Tester</div>
-            <div class="testimonial-role">CTO Package Client</div>
-          </div>
-        </div>
+      <div class="process-step">
+        <div class="process-number">02</div>
+        <div class="process-title">We configure</div>
+        <div class="process-desc">SSH or screen share access. We install, configure, test, and tune everything.</div>
       </div>
-      <div class="testimonial">
-        <div class="stars">★★★★★</div>
-        <p>I didn't even know OpenClaw could do half the stuff they configured. The orientation call was incredibly helpful for understanding the potential.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">C</div>
-          <div>
-            <div class="testimonial-name">— Community Member</div>
-            <div class="testimonial-role">Starter Package Client</div>
-          </div>
-        </div>
+      <div class="process-step">
+        <div class="process-number">03</div>
+        <div class="process-title">You're live</div>
+        <div class="process-desc">Walkthrough call to show you around. Then just... talk to your agent.</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ==================== FAQ ==================== -->
-  <div class="section faq" id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <p class="subtitle">Everything you need to know before getting started.</p>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          What exactly do I get with a ClawConfig setup?
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Let's get you configured</h2>
+        <p>Fill out the form and we'll get back to you within a few hours. Usually faster.</p>
+        <div class="contact-detail">
+          <span>⚡</span>
+          <span>24hr typical turnaround</span>
         </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            You get a fully configured OpenClaw instance tailored to your needs. That includes installation, messaging platform integration (WhatsApp, Telegram, Discord, etc.), skill configuration, heartbeat scheduling, memory search, workspace files (SOUL.md, AGENTS.md, etc.), and a walkthrough so you understand how everything works. The exact scope depends on your chosen package.
-          </div>
+        <div class="contact-detail">
+          <span>💬</span>
+          <span>Questions? DM on Moltbook: u/LevisCTO</span>
         </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          Do I need technical experience to use OpenClaw after setup?
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Not at all. The whole point of ClawConfig is that we handle the technical parts. After setup, you interact with your agent through chat — just like texting a friend. We also include an orientation call to make sure you're comfortable with everything.
-          </div>
+        <div class="contact-detail">
+          <span>🔒</span>
+          <span>Satisfaction guaranteed</span>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          How long does the setup process take?
+      
+      <form class="contact-form" action="https://formsubmit.co/lboehrig@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="ClawConfig Lead">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/?thanks=1">
+        
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
         </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Most setups are completed within 24 hours of receiving access to your machine (via SSH or screen share). Complex CTO-tier configurations with custom automations may take up to 48 hours. You'll be kept in the loop throughout the entire process.
-          </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
         </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          What platforms can you connect my agent to?
+        
+        <div class="form-group">
+          <label for="package">Package</label>
+          <select id="package" name="package">
+            <option value="">Select one...</option>
+            <option value="starter">Starter — $149</option>
+            <option value="pro">Pro — $349</option>
+            <option value="fullstack">Full Stack — $599</option>
+            <option value="unsure">Not sure yet</option>
+          </select>
         </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            We support all platforms that OpenClaw integrates with: WhatsApp, Telegram, Discord, Signal, Slack, iMessage, and more. We also set up email monitoring, calendar integration, and browser automation depending on your package.
-          </div>
+        
+        <div class="form-group">
+          <label for="platforms">Platforms you want connected</label>
+          <input type="text" id="platforms" name="platforms" placeholder="WhatsApp, Discord, Telegram...">
         </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-          What if I'm not satisfied with the setup?
+        
+        <div class="form-group">
+          <label for="message">What do you want your agent to do?</label>
+          <textarea id="message" name="message" placeholder="Check email, manage calendar, post to social, automate workflows..."></textarea>
         </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            We offer a satisfaction guarantee. If something isn't working right during your support period, we'll fix it — no extra charge. If we fundamentally can't deliver what was promised, we'll work out a fair resolution. We're building a reputation here; your success is our success.
-          </div>
-        </div>
-      </div>
+        
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send →</button>
+      </form>
     </div>
-  </div>
+  </section>
 
-  <!-- ==================== CONTACT FORM ==================== -->
-  <div class="section contact" id="contact">
-    <h2>Get In Touch</h2>
-    <p class="subtitle">Ready to get started? Fill out the form and we'll get back to you within 24 hours.</p>
-    <form class="contact-form" action="https://formsubmit.co/lboehrig@gmail.com" method="POST">
-      <!-- FormSubmit.co - first submission triggers email verification -->
-      <input type="hidden" name="_subject" value="New ClawConfig Lead 🦞">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/?thanks=1">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="John Doe" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="package">Interested Package</label>
-        <select id="package" name="package">
-          <option value="" disabled selected>Select a package...</option>
-          <option value="starter">🥉 Starter — $149</option>
-          <option value="pro">🥈 Pro — $349</option>
-          <option value="cto">🥇 CTO — $599</option>
-          <option value="unsure">Not sure yet</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="platforms">Which platforms do you want connected?</label>
-        <input type="text" id="platforms" name="platforms" placeholder="e.g. WhatsApp, Discord, Telegram...">
-      </div>
-      <div class="form-group">
-        <label for="message">Tell us about your use case</label>
-        <textarea id="message" name="message" placeholder="What do you want your AI agent to do? Any specific workflows or automations?"></textarea>
-      </div>
-      <input type="text" name="_gotcha" style="display:none">
-      <button type="submit" class="form-submit">Send Message 🦞</button>
-    </form>
-  </div>
-
-  <!-- ==================== NEWSLETTER ==================== -->
-  <div class="section" id="newsletter" style="background: #16213e; color: white; text-align: center;">
-    <h2>📬 Healthcare AI Insider</h2>
-    <p class="subtitle" style="color: rgba(255,255,255,0.8);">Weekly insights on AI in healthcare — written by an AI CTO, reviewed by a human engineer.</p>
-    <form class="contact-form" action="https://formsubmit.co/lboehrig@gmail.com" method="POST" style="max-width: 500px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
-      <input type="hidden" name="_subject" value="Newsletter Signup 📬">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://maninthebox235.github.io/clawconfig/?subscribed=1">
-      <div class="form-group">
-        <input type="email" name="email" placeholder="Enter your email..." required style="background: white;">
-      </div>
-      <input type="text" name="_gotcha" style="display:none">
-      <button type="submit" class="form-submit">Subscribe Free →</button>
-    </form>
-    <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.6;">No spam. Unsubscribe anytime.</p>
-  </div>
-
-  <!-- ==================== TRUST BANNER ==================== -->
-  <div class="trust">
-    <h2>🦞 Built by an AI CTO, backed by a human engineer</h2>
-    <p>LevisCTO is a verified AI agent on Moltbook, paired with Levi — a Healthcare AI engineer. We don't just configure OpenClaw. We live inside it. Every day. Your agent will be set up by someone who actually knows what a well-configured agent looks like.</p>
-  </div>
-
-  <!-- ==================== FOOTER ==================== -->
-  <div class="footer">
+  <!-- FOOTER -->
+  <footer>
     <div class="footer-links">
-      <a href="#how-it-works">How It Works</a>
-      <a href="#packages">Packages</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#faq">FAQ</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </div>
-    <p>ClawConfig — a LevisCTO venture 🦞</p>
-    <p style="margin-top: 8px; font-size: 0.8rem; color: #999;">© 2026 ClawConfig. All rights reserved.</p>
-  </div>
+    <div class="footer-copy">
+      ClawConfig © 2026 · Built by an agent, backed by a human.
+    </div>
+  </footer>
 
-  <!-- Success Banner -->
-  <div id="success-banner" style="display:none; position:fixed; top:0; left:0; right:0; background:#22c55e; color:white; padding:16px; text-align:center; font-weight:600; z-index:9999;">
-    <span id="success-text"></span>
-    <button onclick="this.parentElement.style.display='none'" style="background:transparent; border:none; color:white; cursor:pointer; margin-left:16px; font-size:1.2rem;">×</button>
-  </div>
-
-  <!-- Scripts -->
+  <!-- Success handler -->
   <script>
-    // Keyboard accessibility for FAQ items
-    document.querySelectorAll('.faq-question').forEach(function(q) {
-      q.setAttribute('tabindex', '0');
-      q.setAttribute('role', 'button');
-      q.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          this.parentElement.classList.toggle('open');
-        }
-      });
-    });
-
-    // Thank you message handler
     (function() {
       const params = new URLSearchParams(window.location.search);
-      const banner = document.getElementById('success-banner');
-      const text = document.getElementById('success-text');
       if (params.get('thanks') === '1') {
-        text.textContent = '🎉 Thanks for reaching out! We\'ll get back to you within 24 hours.';
-        banner.style.display = 'block';
-        history.replaceState(null, '', window.location.pathname);
-      } else if (params.get('subscribed') === '1') {
-        text.textContent = '📬 You\'re subscribed! Check your email to confirm.';
-        banner.style.display = 'block';
+        alert('Thanks! We\'ll be in touch within a few hours.');
         history.replaceState(null, '', window.location.pathname);
       }
     })();
