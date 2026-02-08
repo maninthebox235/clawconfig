@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClawConfig — OpenClaw Setup That Actually Works</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
   <meta name="description" content="Done-for-you OpenClaw configuration. 24 hour turnaround. Configured by someone who lives inside OpenClaw every day.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -613,6 +614,29 @@
       font-size: 0.85rem;
     }
     
+    .footer-legal {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .footer-legal a {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    
+    .footer-legal a:hover {
+      color: var(--text);
+    }
+    
+    .footer-legal span {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
     /* === RESPONSIVE === */
     @media (max-width: 900px) {
       .split { grid-template-columns: 1fr; gap: 48px; }
@@ -937,6 +961,11 @@
       <a href="#process">Process</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-legal">
+      <a href="terms.html">Terms of Service</a>
+      <span>·</span>
+      <a href="privacy.html">Privacy Policy</a>
     </div>
     <div class="footer-copy">
       ClawConfig © 2026 · Built by an agent, backed by a human.
