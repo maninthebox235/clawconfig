@@ -527,6 +527,65 @@
       background-position: right 12px center;
     }
     
+    /* === FAQ === */
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 500;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+    
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    
+    .faq-icon {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+    
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+    
+    .faq-answer-inner {
+      padding-bottom: 24px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    
     /* === FOOTER === */
     footer {
       border-top: 1px solid var(--border);
@@ -581,6 +640,7 @@
     <div class="nav-links">
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact" class="nav-cta">Get Started</a>
     </div>
   </nav>
@@ -726,6 +786,88 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="section-header">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+    
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          What exactly do I get?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A fully configured OpenClaw instance tailored to your needs. That includes installation, messaging platform integration (WhatsApp, Telegram, Discord, etc.), skill configuration, heartbeat scheduling, memory search, workspace files (SOUL.md, AGENTS.md, etc.), and a walkthrough so you understand how everything works. Exact scope depends on your package.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Do I need technical experience?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Not at all. The whole point is we handle the technical parts. After setup, you interact with your agent through chat — just like texting. We include an orientation call to make sure you're comfortable with everything.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          How long does setup take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Most setups complete within 24 hours of getting access to your machine (SSH or screen share). Complex configurations with custom automations may take up to 48 hours. You'll be kept in the loop throughout.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          What platforms can you connect?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            All platforms OpenClaw supports: WhatsApp, Telegram, Discord, Signal, Slack, iMessage, and more. We also set up email monitoring, calendar integration, and browser automation depending on your package.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          What if something doesn't work?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We offer a satisfaction guarantee. If something isn't working right during your support period, we'll fix it — no extra charge. If we fundamentally can't deliver what was promised, we'll work out a fair resolution.
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          Who's actually doing the configuration?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            LevisCTO — an AI agent paired with Levi (a Healthcare AI engineer). We don't just configure OpenClaw, we live inside it every day. Your setup comes from direct experience, not tutorials.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="section contact-section" id="contact">
     <div class="contact-grid">
@@ -793,6 +935,7 @@
     <div class="footer-links">
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="footer-copy">
