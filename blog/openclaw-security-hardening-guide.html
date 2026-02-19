@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Security Hardening: 10 Things You're Probably Missing | ClawConfig</title>
+<meta name="description" content="Self-hosted OpenClaw? Here are 10 critical security hardening steps most people miss — with code snippets and practical walkthroughs to lock down your instance.">
+<meta name="keywords" content="OpenClaw security, OpenClaw hardening, self-hosted AI security, OpenClaw firewall, OpenClaw VPN, OpenClaw gateway API security">
+<meta name="author" content="ClawConfig">
+<meta property="og:title" content="OpenClaw Security Hardening: 10 Things You're Probably Missing">
+<meta property="og:description" content="Practical, actionable security guide for self-hosted OpenClaw instances. Code snippets included.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://clawconfig.com/blog/openclaw-security-hardening-guide">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f1117;--surface:#181a20;--surface2:#1e2028;--border:#2a2d38;--text:#e2e4e9;--text-dim:#8b8fa3;--accent:#6c63ff;--accent-light:#8a83ff;--green:#34d399;--orange:#f59e0b;--red:#ef4444;--code-bg:#13151b;--max-w:780px}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.75;font-size:17px}
+a{color:var(--accent-light);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:var(--max-w);margin:0 auto;padding:2rem 1.5rem 6rem}
+.breadcrumb{font-size:.85rem;color:var(--text-dim);margin-bottom:2rem}
+.breadcrumb a{color:var(--text-dim)}
+article header{margin-bottom:3rem}
+h1{font-size:2.4rem;line-height:1.2;letter-spacing:-.02em;margin-bottom:1rem;color:#fff}
+.subtitle{font-size:1.15rem;color:var(--text-dim);margin-bottom:1.5rem}
+.meta{display:flex;gap:1.5rem;font-size:.85rem;color:var(--text-dim);flex-wrap:wrap}
+.meta time{color:var(--green)}
+.tag{background:var(--surface2);border:1px solid var(--border);padding:.15rem .6rem;border-radius:999px;font-size:.78rem}
+h2{font-size:1.55rem;margin:2.8rem 0 1rem;color:#fff;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+h2 .num{color:var(--accent);margin-right:.4rem;font-weight:800}
+h3{font-size:1.15rem;margin:1.5rem 0 .5rem;color:#fff}
+p{margin-bottom:1.2rem}
+ul,ol{margin:0 0 1.2rem 1.5rem}
+li{margin-bottom:.4rem}
+strong{color:#fff}
+code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.88em;background:var(--code-bg);padding:.15em .4em;border-radius:4px;color:var(--green)}
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;overflow-x:auto;margin:1rem 0 1.5rem;line-height:1.55}
+pre code{background:none;padding:0;font-size:.85rem;color:var(--text)}
+.comment{color:var(--text-dim)}
+.warn{background:rgba(245,158,11,.08);border-left:3px solid var(--orange);padding:.8rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0 1.5rem;font-size:.95rem}
+.warn strong{color:var(--orange)}
+.tip{background:rgba(52,211,153,.07);border-left:3px solid var(--green);padding:.8rem 1.2rem;border-radius:0 8px 8px 0;margin:1rem 0 1.5rem;font-size:.95rem}
+.tip strong{color:var(--green)}
+.toc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem 2rem;margin:2rem 0}
+.toc h3{margin:0 0 .8rem;font-size:1rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.toc ol{margin:0;padding-left:1.3rem}
+.toc li{margin-bottom:.35rem;font-size:.95rem}
+.toc a{color:var(--text)}
+.cta{background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(108,99,255,.04));border:1px solid rgba(108,99,255,.3);border-radius:12px;padding:2rem 2.2rem;margin:3rem 0;text-align:center}
+.cta h3{color:#fff;font-size:1.3rem;margin:0 0 .6rem}
+.cta p{color:var(--text-dim);margin-bottom:1.2rem;font-size:.95rem}
+.cta .btn{display:inline-block;background:var(--accent);color:#fff;padding:.7rem 2rem;border-radius:8px;font-weight:600;font-size:1rem;transition:background .2s}
+.cta .btn:hover{background:var(--accent-light);text-decoration:none}
+.cta .price{font-size:.85rem;color:var(--text-dim);margin-top:.8rem}
+footer{text-align:center;color:var(--text-dim);font-size:.82rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border)}
+@media(max-width:600px){h1{font-size:1.7rem}.container{padding:1.2rem 1rem 4rem}pre{padding:.8rem 1rem}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"OpenClaw Security Hardening: 10 Things You're Probably Missing","description":"Practical security hardening guide for self-hosted OpenClaw instances with code snippets.","author":{"@type":"Organization","name":"ClawConfig"},"datePublished":"2026-02-17","dateModified":"2026-02-17"}
+</script>
+</head>
+<body>
+<div class="container">
+
+<nav class="breadcrumb">
+<a href="/">ClawConfig</a> / <a href="/blog">Blog</a> / Security Hardening Guide
+</nav>
+
+<article>
+<header>
+<h1>OpenClaw Security Hardening: 10 Things You're Probably Missing</h1>
+<p class="subtitle">You got OpenClaw running. Great. Now let's make sure you're not leaving the front door wide open.</p>
+<div class="meta">
+<time datetime="2026-02-17">Feb 17, 2026</time>
+<span>12 min read</span>
+<span class="tag">Security</span>
+<span class="tag">Self-Hosted</span>
+<span class="tag">Guide</span>
+</div>
+</header>
+
+<p>Self-hosting OpenClaw is one of the best ways to keep your AI workflow private and under your control. But the default install is optimized for <em>getting you running</em>, not for production security. Most people stop after <code>openclaw gateway start</code> and call it a day.</p>
+
+<p>That's a problem. Your OpenClaw instance has access to your shell, your files, your network, and potentially your cloud credentials. An exposed gateway is an open invitation.</p>
+
+<p>Here are 10 things you should do <strong>today</strong> to lock it down.</p>
+
+<nav class="toc">
+<h3>What We'll Cover</h3>
+<ol>
+<li><a href="#firewall">Lock Down Ports with Firewall Rules</a></li>
+<li><a href="#ssh">Enforce SSH Key Authentication</a></li>
+<li><a href="#root">Disable Root Login</a></li>
+<li><a href="#gateway">Secure the Gateway API</a></li>
+<li><a href="#tokens">Rotate Your Tokens Regularly</a></li>
+<li><a href="#allowlists">Use Allowlists for Tool Access</a></li>
+<li><a href="#vpn">Put It Behind a VPN or Tailscale</a></li>
+<li><a href="#logs">Monitor Your Logs</a></li>
+<li><a href="#backups">Implement a Backup Strategy</a></li>
+<li><a href="#updates">Keep OpenClaw Updated</a></li>
+</ol>
+</nav>
+
+<!-- 1 -->
+<h2 id="firewall"><span class="num">1.</span> Lock Down Ports with Firewall Rules</h2>
+
+<p>If your OpenClaw host is internet-facing, you need to restrict which ports are accessible. The gateway listens on a port (default <code>3000</code>), and you probably have SSH on <code>22</code>. Everything else should be closed.</p>
+
+<h3>UFW (Ubuntu/Debian)</h3>
+<pre><code><span class="comment"># Reset to deny-all baseline</span>
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+<span class="comment"># Allow SSH (change port if you've moved it)</span>
+sudo ufw allow 22/tcp
+
+<span class="comment"># Allow OpenClaw gateway ONLY from your IP or VPN range</span>
+sudo ufw allow from 10.0.0.0/24 to any port 3000 proto tcp
+
+<span class="comment"># Enable</span>
+sudo ufw enable
+sudo ufw status verbose</code></pre>
+
+<h3>iptables (if you prefer)</h3>
+<pre><code><span class="comment"># Drop everything except established connections, SSH, and gateway from trusted subnet</span>
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 3000 -s 10.0.0.0/24 -j ACCEPT
+iptables -A INPUT -j DROP</code></pre>
+
+<div class="warn"><strong>Don't skip this.</strong> A publicly accessible gateway port means anyone who discovers it can attempt to interact with your OpenClaw instance.</div>
+
+<!-- 2 -->
+<h2 id="ssh"><span class="num">2.</span> Enforce SSH Key Authentication</h2>
+
+<p>If you're managing your OpenClaw server over SSH (and you probably are), password auth is a liability. Switch to key-only.</p>
+
+<pre><code><span class="comment"># Generate a key pair on your local machine (if you haven't)</span>
+ssh-keygen -t ed25519 -C "openclaw-admin"
+
+<span class="comment"># Copy your public key to the server</span>
+ssh-copy-id -i ~/.ssh/id_ed25519.pub user@your-server
+
+<span class="comment"># Then on the server, disable password auth:</span>
+sudo sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo sed -i 's/^#*ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl restart sshd</code></pre>
+
+<div class="tip"><strong>Bonus:</strong> Move SSH to a non-standard port (e.g., <code>2222</code>) to cut down on automated scanning noise. Update your firewall rules accordingly.</div>
+
+<!-- 3 -->
+<h2 id="root"><span class="num">3.</span> Disable Root Login</h2>
+
+<p>OpenClaw should never run as root, and root shouldn't be logging in directly over SSH. Period.</p>
+
+<pre><code><span class="comment"># Disable root SSH login</span>
+sudo sed -i 's/^#*PermitRootLogin.*/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+<span class="comment"># Create a dedicated user for OpenClaw if you haven't</span>
+sudo useradd -m -s /bin/bash openclaw
+sudo usermod -aG sudo openclaw
+
+<span class="comment"># Run OpenClaw as that user</span>
+su - openclaw
+openclaw gateway start</code></pre>
+
+<p>Running as a non-root user limits blast radius. If something goes wrong — a malicious tool call, a prompt injection that escapes the sandbox — the damage is contained to that user's permissions.</p>
+
+<!-- 4 -->
+<h2 id="gateway"><span class="num">4.</span> Secure the Gateway API</h2>
+
+<p>The gateway is the brain of your OpenClaw instance. It handles API requests, routes tool calls, and manages sessions. Treat it like the crown jewels.</p>
+
+<h3>Bind to localhost only</h3>
+<p>If you're accessing OpenClaw through a VPN or SSH tunnel, the gateway doesn't need to listen on <code>0.0.0.0</code>:</p>
+<pre><code><span class="comment"># In your OpenClaw config (~/.openclaw/config.yaml or equivalent)</span>
+gateway:
+  host: 127.0.0.1
+  port: 3000</code></pre>
+
+<h3>Enable HTTPS with a reverse proxy</h3>
+<pre><code><span class="comment"># Nginx reverse proxy with TLS (Let's Encrypt)</span>
+server {
+    listen 443 ssl http2;
+    server_name openclaw.yourdomain.com;
+
+    ssl_certificate /etc/letsencrypt/live/openclaw.yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/openclaw.yourdomain.com/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        <span class="comment"># WebSocket support for real-time sessions</span>
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}</code></pre>
+
+<div class="warn"><strong>Never expose the gateway over plain HTTP on the internet.</strong> Tokens, session data, and tool outputs travel over that connection.</div>
+
+<!-- 5 -->
+<h2 id="tokens"><span class="num">5.</span> Rotate Your Tokens Regularly</h2>
+
+<p>Your gateway token is the key to the kingdom. If it leaks — in a commit, a screenshot, a log file — anyone with it can control your instance.</p>
+
+<pre><code><span class="comment"># Regenerate your gateway token</span>
+openclaw gateway token --rotate
+
+<span class="comment"># Update all connected clients/nodes with the new token</span>
+<span class="comment"># Check for tokens accidentally committed to git:</span>
+git log --all -p | grep -i "gatewayToken\|OPENCLAW_TOKEN" | head -20</code></pre>
+
+<h3>Best practices</h3>
+<ul>
+<li>Rotate tokens at least <strong>every 90 days</strong>, or immediately after any personnel change</li>
+<li>Store tokens in environment variables, never in checked-in config files</li>
+<li>Use <code>.env</code> files with strict permissions: <code>chmod 600 .env</code></li>
+<li>Add <code>.env</code> and config files to <code>.gitignore</code></li>
+</ul>
+
+<div class="tip"><strong>Automate it.</strong> Set a calendar reminder or a cron job that alerts you when it's time to rotate.</div>
+
+<!-- 6 -->
+<h2 id="allowlists"><span class="num">6.</span> Use Allowlists for Tool Access</h2>
+
+<p>OpenClaw's tool system is powerful — shell access, file I/O, browser control, messaging. That power needs guardrails.</p>
+
+<pre><code><span class="comment"># In your OpenClaw config, restrict tool access per session/channel</span>
+security:
+  exec:
+    mode: allowlist          <span class="comment"># deny | allowlist | full</span>
+    allowed:
+      - git
+      - npm
+      - node
+      - python3
+      - openclaw
+    blocked:
+      - rm -rf
+      - sudo su
+      - curl | bash
+
+  tools:
+    disabled:
+      - browser              <span class="comment"># Disable if you don't need it</span>
+      - nodes                <span class="comment"># Disable node control if not using paired devices</span></code></pre>
+
+<p>The principle of least privilege applies here. If a channel or session doesn't need shell access, don't give it shell access. If it doesn't need the browser, disable it.</p>
+
+<div class="warn"><strong>Default is often too permissive.</strong> Audit which tools each channel actually needs and lock down the rest. A compromised Discord integration shouldn't have <code>exec</code> access.</div>
+
+<!-- 7 -->
+<h2 id="vpn"><span class="num">7.</span> Put It Behind a VPN or Tailscale</h2>
+
+<p>The single best thing you can do for your OpenClaw security is to take it off the public internet entirely. A VPN makes your instance accessible only to authenticated devices.</p>
+
+<h3>Tailscale (easiest option)</h3>
+<pre><code><span class="comment"># Install Tailscale on your OpenClaw server</span>
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+
+<span class="comment"># Your server gets a 100.x.x.x address</span>
+<span class="comment"># Access OpenClaw at http://100.x.x.x:3000 from any device on your tailnet</span>
+
+<span class="comment"># Lock down the firewall to Tailscale only</span>
+sudo ufw allow in on tailscale0
+sudo ufw deny 3000/tcp   <span class="comment"># Block public access to gateway</span></code></pre>
+
+<h3>WireGuard (DIY option)</h3>
+<pre><code><span class="comment"># Install WireGuard</span>
+sudo apt install wireguard
+
+<span class="comment"># Generate keys</span>
+wg genkey | tee privatekey | wg pubkey > publickey
+
+<span class="comment"># /etc/wireguard/wg0.conf</span>
+[Interface]
+Address = 10.200.0.1/24
+ListenPort = 51820
+PrivateKey = &lt;server-private-key&gt;
+
+[Peer]
+PublicKey = &lt;client-public-key&gt;
+AllowedIPs = 10.200.0.2/32</code></pre>
+
+<p>With a VPN, even if there's a vulnerability in the gateway, attackers can't reach it without being on your network first. It's defense in depth.</p>
+
+<!-- 8 -->
+<h2 id="logs"><span class="num">8.</span> Monitor Your Logs</h2>
+
+<p>If you're not watching your logs, you won't know something's wrong until it's too late.</p>
+
+<pre><code><span class="comment"># Watch OpenClaw gateway logs in real-time</span>
+openclaw gateway logs -f
+
+<span class="comment"># Check for unusual activity — failed auth, unknown IPs</span>
+openclaw gateway logs | grep -i "error\|denied\|unauthorized\|failed" | tail -50
+
+<span class="comment"># Monitor SSH login attempts</span>
+journalctl -u sshd --since "1 hour ago" | grep -i "failed\|invalid"</code></pre>
+
+<h3>Set up alerts</h3>
+<p>Don't just log — alert. A simple approach:</p>
+<pre><code><span class="comment">#!/bin/bash — save as /usr/local/bin/openclaw-watchdog.sh</span>
+FAILURES=$(openclaw gateway logs --since "5m" | grep -c "unauthorized")
+if [ "$FAILURES" -gt 5 ]; then
+  curl -X POST "https://your-webhook-url" \
+    -H "Content-Type: application/json" \
+    -d "{\"text\": \"⚠️ OpenClaw: $FAILURES unauthorized attempts in last 5 min\"}"
+fi</code></pre>
+
+<pre><code><span class="comment"># Run it every 5 minutes via cron</span>
+*/5 * * * * /usr/local/bin/openclaw-watchdog.sh</code></pre>
+
+<div class="tip"><strong>Centralize logs</strong> if you run multiple instances. Ship them to Loki, Datadog, or even a simple syslog server so you have a single place to search.</div>
+
+<!-- 9 -->
+<h2 id="backups"><span class="num">9.</span> Implement a Backup Strategy</h2>
+
+<p>Your OpenClaw workspace contains memory files, configs, tool outputs, and potentially sensitive data. If the disk dies or something goes sideways, you want to recover fast.</p>
+
+<pre><code><span class="comment">#!/bin/bash — openclaw-backup.sh</span>
+
+BACKUP_DIR="/backups/openclaw"
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+SOURCE="$HOME/.openclaw"
+
+mkdir -p "$BACKUP_DIR"
+
+<span class="comment"># Create encrypted, compressed backup</span>
+tar czf - "$SOURCE" | \
+  gpg --symmetric --cipher-algo AES256 \
+  --batch --passphrase-file /root/.backup-passphrase \
+  -o "$BACKUP_DIR/openclaw-$TIMESTAMP.tar.gz.gpg"
+
+<span class="comment"># Sync to offsite (S3, B2, rsync to another server)</span>
+aws s3 cp "$BACKUP_DIR/openclaw-$TIMESTAMP.tar.gz.gpg" \
+  s3://your-bucket/openclaw-backups/
+
+<span class="comment"># Prune local backups older than 30 days</span>
+find "$BACKUP_DIR" -name "*.gpg" -mtime +30 -delete
+
+echo "Backup complete: openclaw-$TIMESTAMP"</code></pre>
+
+<h3>What to back up</h3>
+<ul>
+<li><code>~/.openclaw/</code> — configs, workspace, memory, skills</li>
+<li>Your reverse proxy configs (nginx/caddy)</li>
+<li>Firewall rules (<code>sudo ufw status</code> or iptables export)</li>
+<li>Environment files (<code>.env</code>) — stored separately, encrypted</li>
+</ul>
+
+<div class="warn"><strong>Test your restores.</strong> A backup you've never restored is a hope, not a strategy. Spin up a test instance quarterly and verify recovery works.</div>
+
+<!-- 10 -->
+<h2 id="updates"><span class="num">10.</span> Keep OpenClaw Updated</h2>
+
+<p>OpenClaw is actively developed. Security patches, bug fixes, and hardening improvements ship regularly. Running an old version means running with known vulnerabilities.</p>
+
+<pre><code><span class="comment"># Check your current version</span>
+openclaw --version
+
+<span class="comment"># Update to latest</span>
+openclaw update
+
+<span class="comment"># Or if installed via npm</span>
+npm update -g openclaw
+
+<span class="comment"># Restart the gateway after updating</span>
+openclaw gateway restart</code></pre>
+
+<h3>Stay informed</h3>
+<ul>
+<li>Watch the <a href="https://github.com/openclaw" rel="noopener">OpenClaw GitHub repo</a> for releases</li>
+<li>Join the community Discord for security advisories</li>
+<li>Subscribe to the changelog or RSS feed</li>
+</ul>
+
+<div class="tip"><strong>Pin to a release channel</strong> if you want stability. But don't fall more than one minor version behind — that's where security debt accumulates.</div>
+
+<!-- Bonus / Summary -->
+<h2>Quick Checklist</h2>
+
+<p>Copy this, paste it into your notes, and check things off:</p>
+
+<pre><code>[ ] Firewall configured — only necessary ports open
+[ ] SSH key auth enforced, passwords disabled
+[ ] Root login disabled, dedicated OpenClaw user created
+[ ] Gateway bound to localhost or VPN interface
+[ ] HTTPS via reverse proxy (if internet-facing)
+[ ] Gateway token rotated, stored in env vars
+[ ] Tool allowlists configured per channel
+[ ] VPN or Tailscale in front of everything
+[ ] Log monitoring and alerting in place
+[ ] Automated encrypted backups with tested restores
+[ ] OpenClaw updated to latest version</code></pre>
+
+<!-- CTA -->
+<div class="cta">
+<h3>Not Sure What You're Missing?</h3>
+<p>We'll audit your OpenClaw instance end-to-end — configs, network exposure, tool permissions, and more. You get a detailed report with prioritized fixes and a 30-minute walkthrough call.</p>
+<a href="https://clawconfig.com/security-audit" class="btn">Get a Security Audit →</a>
+<p class="price">One-time assessment · $349 · Results in 48 hours</p>
+</div>
+
+<p>Security isn't a one-time thing — it's a habit. Set a monthly reminder to revisit this list. Your future self (and your data) will thank you.</p>
+
+</article>
+
+<footer>
+<p>© 2026 ClawConfig · <a href="https://clawconfig.com">clawconfig.com</a></p>
+</footer>
+
+</div>
+</body>
+</html>

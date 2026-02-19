@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Commerce Setup — x402 Integration Services | ClawConfig</title>
+<meta name="description" content="Get your business ready for AI agent payments. We set up Stripe x402 so agents can pay for your APIs with USDC on Base. Done-for-you integration.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#12121a;--surface2:#1a1a26;--border:#2a2a3a;--accent:#6366f1;--accent2:#818cf8;--green:#22c55e;--orange:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;--red:#ef4444}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent2);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{padding:20px 0;border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.4rem;font-weight:700;letter-spacing:-0.5px}
+.logo span{color:var(--accent)}
+
+/* Hero */
+.hero{padding:80px 0 60px;text-align:center}
+.badge{display:inline-block;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:var(--accent2);padding:6px 16px;border-radius:20px;font-size:0.85rem;margin-bottom:24px;font-weight:500}
+.badge .pulse{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{font-size:3rem;font-weight:800;letter-spacing:-1.5px;line-height:1.15;margin-bottom:20px}
+h1 .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{font-size:1.2rem;color:var(--muted);max-width:650px;margin:0 auto 32px}
+.early-bird{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(245,158,11,0.05));border:1px solid rgba(245,158,11,0.3);padding:14px 28px;border-radius:12px;display:inline-block;color:var(--orange);font-weight:600;font-size:0.95rem}
+
+/* What is x402 */
+.explainer{padding:60px 0;border-top:1px solid var(--border)}
+.explainer h2{font-size:2rem;font-weight:700;margin-bottom:16px;text-align:center}
+.explainer-subtitle{text-align:center;color:var(--muted);margin-bottom:40px;max-width:700px;margin-left:auto;margin-right:auto}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.how-step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px 24px;text-align:center}
+.how-step .num{width:40px;height:40px;background:rgba(99,102,241,0.15);color:var(--accent2);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:16px}
+.how-step h3{font-size:1.1rem;margin-bottom:8px}
+.how-step p{color:var(--muted);font-size:0.9rem}
+
+/* Tech details */
+.tech{padding:40px 0 60px}
+.tech-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;font-family:'SF Mono',Consolas,monospace;font-size:0.85rem;overflow-x:auto}
+.tech-box .comment{color:#6b7280}
+.tech-box .key{color:var(--accent2)}
+.tech-box .str{color:var(--green)}
+.tech-box .label{color:var(--muted);font-family:-apple-system,sans-serif;font-size:0.8rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+
+/* Tiers */
+.tiers{padding:60px 0;border-top:1px solid var(--border)}
+.tiers h2{font-size:2rem;font-weight:700;text-align:center;margin-bottom:40px}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tier{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px 28px;position:relative;transition:transform 0.2s}
+.tier:hover{transform:translateY(-4px)}
+.tier.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(99,102,241,0.15)}
+.tier.featured::before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:0.7rem;font-weight:700;padding:4px 14px;border-radius:10px;letter-spacing:1px}
+.tier-name{font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px}
+.tier-price{font-size:2.5rem;font-weight:800;margin-bottom:4px}
+.tier-price .original{font-size:1.1rem;color:var(--muted);text-decoration:line-through;margin-right:8px;font-weight:400}
+.tier-price .early{color:var(--green)}
+.tier-desc{color:var(--muted);font-size:0.9rem;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.tier ul{list-style:none;margin-bottom:28px}
+.tier li{padding:6px 0;font-size:0.9rem;color:var(--muted)}
+.tier li::before{content:"✓";color:var(--green);margin-right:10px;font-weight:700}
+.tier li.delivery{padding-top:16px;border-top:1px solid var(--border);margin-top:8px;color:var(--text);font-weight:500}
+.tier li.delivery::before{content:"⏱";color:var(--orange)}
+.btn{display:block;text-align:center;padding:14px;border-radius:12px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;width:100%;transition:opacity 0.2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn:hover{opacity:0.85}
+
+/* Form */
+.form-section{padding:60px 0;border-top:1px solid var(--border)}
+.form-section h2{font-size:2rem;font-weight:700;text-align:center;margin-bottom:8px}
+.form-subtitle{text-align:center;color:var(--muted);margin-bottom:40px}
+.form-box{max-width:560px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px}
+.form-box label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:6px;margin-top:18px}
+.form-box label:first-child{margin-top:0}
+.form-box input,.form-box select,.form-box textarea{width:100%;padding:12px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:0.95rem;font-family:inherit}
+.form-box textarea{resize:vertical;min-height:80px}
+.form-box input:focus,.form-box select:focus,.form-box textarea:focus{outline:none;border-color:var(--accent)}
+.form-box select option{background:var(--surface2)}
+.form-box .btn{margin-top:24px}
+
+/* FAQ */
+.faq{padding:60px 0;border-top:1px solid var(--border)}
+.faq h2{font-size:2rem;font-weight:700;text-align:center;margin-bottom:40px}
+.faq-list{max-width:740px;margin:0 auto}
+.faq-item{border:1px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.faq-q{padding:20px 24px;cursor:pointer;font-weight:600;display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
+.faq-q:hover{background:var(--surface2)}
+.faq-q .arrow{transition:transform 0.2s;color:var(--muted)}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.faq-a{padding:0 24px 20px;color:var(--muted);font-size:0.9rem;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* Footer */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:0.85rem}
+
+@media(max-width:768px){
+  h1{font-size:2rem}
+  .how-grid,.tier-grid{grid-template-columns:1fr}
+  .tier.featured{order:-1}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Claw<span>Config</span></div>
+    <a href="mailto:lboehrig@gmail.com" style="color:var(--muted);font-size:0.9rem">Contact →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge"><span class="pulse"></span> New Service — February 2026</div>
+    <h1>Let AI Agents <span class="highlight">Pay You</span><br>for Your APIs</h1>
+    <p class="subtitle">Stripe x402 enables AI agents to pay for API calls with USDC on Base. We handle the entire integration so you can start earning from agent traffic in days, not months.</p>
+    <div class="early-bird">🔥 Early Bird: 20% off for the first 10 customers — only available this month</div>
+  </div>
+</section>
+
+<section class="explainer">
+  <div class="container">
+    <h2>What is Stripe x402?</h2>
+    <p class="explainer-subtitle">Stripe launched the x402 protocol on February 10, 2026. It uses HTTP status code 402 ("Payment Required") to let AI agents autonomously pay for API access — no human in the loop.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="num">1</div>
+        <h3>Agent Hits Your API</h3>
+        <p>An AI agent calls your endpoint. Your server returns HTTP 402 with a payment requirement header specifying the price in USDC.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">2</div>
+        <h3>Agent Pays Instantly</h3>
+        <p>The agent's x402 client signs a USDC payment on Base (Coinbase L2). Transaction confirms in ~2 seconds with sub-cent gas fees.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">3</div>
+        <h3>You Get Paid</h3>
+        <p>Stripe verifies the on-chain payment and releases the API response. USDC settles to your Stripe balance or wallet. Done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech">
+  <div class="container">
+    <div class="tech-box">
+      <div class="label">How it works under the hood</div>
+<span class="comment">// Your API endpoint returns 402 with x402 payment details</span>
+<br>HTTP/1.1 <span class="key">402</span> Payment Required
+<br>X-Payment-Protocol: <span class="str">x402</span>
+<br>X-Payment-Network: <span class="str">base</span>
+<br>X-Payment-Token: <span class="str">USDC</span>
+<br>X-Payment-Amount: <span class="str">0.001</span>
+<br>X-Payment-Recipient: <span class="str">0xYourAddress</span>
+<br>X-Payment-Facilitator: <span class="str">stripe</span>
+<br>
+<br><span class="comment">// Agent pays via x402 client SDK, re-sends request with payment proof</span>
+<br>Authorization: <span class="str">X402-Payment {base64_encoded_tx_receipt}</span>
+<br>
+<br><span class="comment">// Stripe middleware verifies on-chain, forwards to your handler</span>
+<br>→ Your API returns the response. Settlement: instant.
+    </div>
+  </div>
+</section>
+
+<section class="tiers" id="pricing">
+  <div class="container">
+    <h2>Choose Your Integration Level</h2>
+    <div class="tier-grid">
+      <div class="tier">
+        <div class="tier-name">Basic Setup</div>
+        <div class="tier-price"><span class="original">$499</span><span class="early">$399</span></div>
+        <p class="tier-desc">Get x402 working on a single API endpoint. Perfect for testing the waters.</p>
+        <ul>
+          <li>One endpoint configured with x402 headers</li>
+          <li>Stripe x402 facilitator account setup</li>
+          <li>Base network wallet configuration</li>
+          <li>Express or FastAPI middleware installed</li>
+          <li>Payment verification logic</li>
+          <li>Test suite with sample agent client</li>
+          <li>30-min walkthrough call</li>
+          <li class="delivery">Delivered in 3–5 business days</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Get Started</a>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Full Integration</div>
+        <div class="tier-price"><span class="original">$999</span><span class="early">$799</span></div>
+        <p class="tier-desc">Multi-endpoint integration with monitoring and a revenue dashboard.</p>
+        <ul>
+          <li>Everything in Basic</li>
+          <li>Unlimited endpoints configured</li>
+          <li>Per-endpoint pricing configuration</li>
+          <li>Real-time payment monitoring dashboard</li>
+          <li>Webhook setup for payment events</li>
+          <li>Rate limiting per agent wallet</li>
+          <li>USDC → USD auto-conversion via Stripe</li>
+          <li>Grafana/Datadog metrics integration</li>
+          <li>60-day support via email</li>
+          <li class="delivery">Delivered in 5–7 business days</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-price"><span class="original">$2,499</span><span class="early">$1,999</span></div>
+        <p class="tier-desc">Custom agent billing infrastructure, revenue sharing, and compliance.</p>
+        <ul>
+          <li>Everything in Full Integration</li>
+          <li>Custom billing tiers (per-call, subscription, metered)</li>
+          <li>Multi-tenant agent authentication</li>
+          <li>Revenue sharing / split payments</li>
+          <li>SOC 2 / compliance documentation support</li>
+          <li>Agent allowlist/denylist management</li>
+          <li>Custom smart contract review</li>
+          <li>Dedicated Slack channel for 90 days</li>
+          <li>Architecture review &amp; scaling plan</li>
+          <li class="delivery">Delivered in 10–14 business days</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section" id="contact">
+  <div class="container">
+    <h2>Get Your Integration Started</h2>
+    <p class="form-subtitle">Tell us about your setup. We'll reply within 24 hours with a plan.</p>
+    <div class="form-box">
+      <form action="https://formsubmit.co/lboehrig@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="x402 Agent Commerce — New Lead">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="">
+
+        <label>Name *</label>
+        <input type="text" name="name" required placeholder="Jane Smith">
+
+        <label>Email *</label>
+        <input type="email" name="email" required placeholder="jane@company.com">
+
+        <label>Company</label>
+        <input type="text" name="company" placeholder="Acme Inc.">
+
+        <label>Which tier are you interested in?</label>
+        <select name="tier">
+          <option value="basic">Basic Setup — $399 (early bird)</option>
+          <option value="full" selected>Full Integration — $799 (early bird)</option>
+          <option value="enterprise">Enterprise — $1,999 (early bird)</option>
+          <option value="not-sure">Not sure yet</option>
+        </select>
+
+        <label>Tell us about your API / use case</label>
+        <textarea name="details" placeholder="e.g. We have a REST API for weather data and want agents to pay per-call. Running on Node.js / AWS Lambda."></textarea>
+
+        <label>Current tech stack</label>
+        <input type="text" name="stack" placeholder="e.g. Node.js, Python/FastAPI, Go, Rails...">
+
+        <button type="submit" class="btn btn-primary">Send — We'll Reply in 24h</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">Is this actually secure? Agents are handling money autonomously.<span class="arrow">▼</span></div>
+        <div class="faq-a">Yes. The x402 protocol uses Stripe as a facilitator — they verify every on-chain transaction before your API releases any data. Agents pay with USDC on Base (Coinbase's L2), which inherits Ethereum's security. Stripe handles the cryptographic verification; your server never touches private keys. It's the same trust model as Stripe Checkout, just with a crypto payment rail.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What are the gas fees? Who pays them?<span class="arrow">▼</span></div>
+        <div class="faq-a">Base L2 gas fees are typically under $0.01 per transaction — often fractions of a cent. The agent (buyer) pays gas as part of the USDC transfer. This is built into the x402 client SDK. For your business, there are no gas costs — you receive USDC net of Stripe's standard processing fee.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How fast do payments settle?<span class="arrow">▼</span></div>
+        <div class="faq-a">Base block time is ~2 seconds. Stripe's facilitator confirms the transaction in real-time, so from the agent's perspective the entire pay-and-receive cycle takes 2–4 seconds. USDC hits your Stripe balance immediately. If you want USD in your bank account, Stripe's standard payout schedule applies (typically T+2).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need to know anything about crypto or blockchain?<span class="arrow">▼</span></div>
+        <div class="faq-a">No. That's the whole point of hiring us. We configure the Base wallet, Stripe facilitator, and middleware. You interact with your Stripe Dashboard like any other payment method. The blockchain layer is abstracted away. You see "Agent payment — $0.05" in your Stripe logs, not hex addresses.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if an agent tries to abuse my API?<span class="arrow">▼</span></div>
+        <div class="faq-a">Our Full and Enterprise tiers include rate limiting per agent wallet address, allowlist/denylist management, and monitoring dashboards. You can set spending caps, block specific agents, and get alerts on unusual patterns. Since every agent has a unique wallet, you have granular control.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Which frameworks do you support?<span class="arrow">▼</span></div>
+        <div class="faq-a">We've built middleware for Express.js, FastAPI (Python), Go net/http, and Rails. If you're on a different stack, we can adapt — the x402 protocol is just HTTP headers and a verification call to Stripe's API. We also support serverless (AWS Lambda, Vercel, Cloudflare Workers).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why should I do this now?<span class="arrow">▼</span></div>
+        <div class="faq-a">x402 launched one week ago. Agent-to-API commerce is brand new. Businesses that enable agent payments now will capture agent traffic that competitors can't serve yet. Early data from Stripe shows agent API usage is growing 40%+ week-over-week. The window to be first-mover in your vertical is measured in weeks, not months.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's USDC? Can I just get paid in dollars?<span class="arrow">▼</span></div>
+        <div class="faq-a">USDC is a dollar-pegged stablecoin issued by Circle (backed 1:1 by US Treasuries and cash). 1 USDC = $1.00, always. With our Full Integration tier, we set up automatic USDC → USD conversion through Stripe, so your payouts arrive in regular dollars. You never have to think about crypto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px"><strong>ClawConfig</strong> — Infrastructure setup for the agent economy</p>
+    <p>Questions? <a href="mailto:lboehrig@gmail.com">lboehrig@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>
